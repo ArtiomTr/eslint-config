@@ -1,0 +1,33 @@
+{
+    "name": "@sirse-dev/eslint-config",
+    "version": "1.0.0",
+    "description": "ESLint configuration with reasonable defaults.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ArtiomTr/eslint-config.git"
+    },
+    "author": "Artiom Tretjakovas <artiom.tretjakovas2@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ArtiomTr/eslint-config/issues"
+    },
+    "homepage": "https://github.com/ArtiomTr/eslint-config#readme",
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.27.0",
+        "@typescript-eslint/parser": "^5.27.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "^7.30.0",
+        "eslint-plugin-react-hooks": "^4.5.0",
+        "eslint-plugin-unicorn": "^42.0.0",
+        "eslint-plugin-workspaces": "^0.7.0"
+    },
+    "peerDependencies": {
+        "eslint": ">=8",
+        "prettier": ">=2"
+    }
+}
