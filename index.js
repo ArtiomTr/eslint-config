@@ -217,8 +217,10 @@ module.exports = {
                 'unicorn/prevent-abbreviations': [
                     'error',
                     {
-                        allowList: {
-                            props: true,
+                        replacements: {
+                            props: {
+                                properties: false,
+                            },
                         },
                     },
                 ],
