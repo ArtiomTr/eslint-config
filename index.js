@@ -159,26 +159,26 @@ module.exports = {
                     ...(isTsconfigAvailable
                         ? [
                               {
-                                  selector: ['variableLike'],
+                                  selector: ['variable'],
                                   types: ['function'],
                                   format: ['camelCase', 'PascalCase'],
                                   leadingUnderscore: 'allow',
                                   trailingUnderscore: 'forbid',
                               },
                               {
-                                  selector: ['variableLike', 'property'],
+                                  selector: ['variable', 'property', 'parameter'],
+                                  format: ['camelCase', 'PascalCase'],
                                   filter: {
                                       regex: '^\\w+Component$',
                                       match: true,
                                   },
-                                  format: ['PascalCase'],
-                                  leadingUnderscore: 'forbid',
+                                  leadingUnderscore: 'allow',
                                   trailingUnderscore: 'forbid',
                               },
                           ]
                         : [
                               {
-                                  selector: ['variableLike', 'memberLike', 'property'],
+                                  selector: ['variable', 'property', 'parameter'],
                                   format: ['camelCase', 'PascalCase'],
                                   leadingUnderscore: 'allow',
                                   trailingUnderscore: 'forbid',
