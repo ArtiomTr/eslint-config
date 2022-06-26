@@ -2,7 +2,7 @@ const { accessSync } = require('fs');
 const { resolve } = require('path');
 
 let isTsconfigAvailable;
-const tsConfigPath = resolve(__dirname, 'tsconfig.json');
+const tsConfigPath = resolve(process.cwd(), 'tsconfig.json');
 
 try {
     accessSync(tsConfigPath);
@@ -130,6 +130,17 @@ module.exports = {
         'workspaces/require-dependency': 'error',
         // Disallow regular expressions with exponential time complexity.
         'unicorn/no-unsafe-regex': 'error',
+        'unicorn/filename-case': 'off',
+        'unicorn/prevent-abbreviations': [
+            'error',
+            {
+                allowList: {
+                    props: true,
+                },
+            },
+        ],
+        'unicorn/prefer-ternary': 'off',
+        'unicorn/no-array-callback-reference': 'off',
     },
     overrides: [
         {
@@ -152,10 +163,20 @@ module.exports = {
                 '@typescript-eslint/naming-convention': [
                     'error',
                     isTsconfigAvailable && {
-                        selector: 'variable',
+                        selector: ['variableLike'],
                         types: ['function'],
                         format: ['camelCase', 'PascalCase'],
                         leadingUnderscore: 'allow',
+                        trailingUnderscore: 'forbid',
+                    },
+                    isTsconfigAvailable && {
+                        selector: ['variableLike', 'property'],
+                        filter: {
+                            regex: '^\\w+Component$',
+                            match: true,
+                        },
+                        format: ['PascalCase'],
+                        leadingUnderscore: 'forbid',
                         trailingUnderscore: 'forbid',
                     },
                     {
