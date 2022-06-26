@@ -34,6 +34,8 @@ module.exports = {
         'lodash',
         // Some great ESLint rules from xo (https://github.com/xojs/xo)
         'unicorn',
+        // Plugin for sorting imports
+        'import',
     ],
     extends: [
         // Recommended ESLint code style.
@@ -131,14 +133,6 @@ module.exports = {
         // Disallow regular expressions with exponential time complexity.
         'unicorn/no-unsafe-regex': 'error',
         'unicorn/filename-case': 'off',
-        'unicorn/prevent-abbreviations': [
-            'error',
-            {
-                allowList: {
-                    props: true,
-                },
-            },
-        ],
         'unicorn/prefer-ternary': 'off',
         'unicorn/no-array-callback-reference': 'off',
     },
@@ -162,23 +156,34 @@ module.exports = {
             rules: {
                 '@typescript-eslint/naming-convention': [
                     'error',
-                    isTsconfigAvailable && {
-                        selector: ['variableLike'],
-                        types: ['function'],
-                        format: ['camelCase', 'PascalCase'],
-                        leadingUnderscore: 'allow',
-                        trailingUnderscore: 'forbid',
-                    },
-                    isTsconfigAvailable && {
-                        selector: ['variableLike', 'property'],
-                        filter: {
-                            regex: '^\\w+Component$',
-                            match: true,
-                        },
-                        format: ['PascalCase'],
-                        leadingUnderscore: 'forbid',
-                        trailingUnderscore: 'forbid',
-                    },
+                    ...(isTsconfigAvailable
+                        ? [
+                              {
+                                  selector: ['variableLike'],
+                                  types: ['function'],
+                                  format: ['camelCase', 'PascalCase'],
+                                  leadingUnderscore: 'allow',
+                                  trailingUnderscore: 'forbid',
+                              },
+                              {
+                                  selector: ['variableLike', 'property'],
+                                  filter: {
+                                      regex: '^\\w+Component$',
+                                      match: true,
+                                  },
+                                  format: ['PascalCase'],
+                                  leadingUnderscore: 'forbid',
+                                  trailingUnderscore: 'forbid',
+                              },
+                          ]
+                        : [
+                              {
+                                  selector: ['variableLike', 'memberLike', 'property'],
+                                  format: ['camelCase', 'PascalCase'],
+                                  leadingUnderscore: 'allow',
+                                  trailingUnderscore: 'forbid',
+                              },
+                          ]),
                     {
                         selector: ['variableLike', 'memberLike', 'property', 'method'],
                         format: ['camelCase'],
@@ -209,6 +214,14 @@ module.exports = {
                 'react/prop-types': 'off',
                 'react/display-name': 'off',
                 'react-hooks/exhaustive-deps': 'error',
+                'unicorn/prevent-abbreviations': [
+                    'error',
+                    {
+                        allowList: {
+                            props: true,
+                        },
+                    },
+                ],
             },
         },
     ],
