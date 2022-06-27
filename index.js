@@ -139,7 +139,7 @@ module.exports = {
     overrides: [
         {
             files: '**/*.{tsx,jsx}',
-            extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended'],
+            extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:react/jsx-runtime'],
             parserOptions: {
                 ecmaFeatures: {
                     jsx: true,
