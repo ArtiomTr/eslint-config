@@ -226,6 +226,7 @@ module.exports = {
                 'react/prop-types': 'off',
                 'react/display-name': 'off',
                 'react-hooks/exhaustive-deps': 'error',
+                '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: 'React' }],
                 'unicorn/prevent-abbreviations': [
                     'error',
                     {
