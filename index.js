@@ -142,6 +142,12 @@ module.exports = {
             env: {
                 node: true,
             },
+            rules: {
+                'unicorn/prevent-abbreviations': 'off',
+                'unicorn/prefer-module': 'off',
+                '@typescript-eslint/no-var-requires': 'off',
+                'no-console': 'off',
+            },
         },
         {
             files: '**/*.{tsx,jsx}',
