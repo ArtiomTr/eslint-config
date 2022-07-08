@@ -138,6 +138,12 @@ module.exports = {
     },
     overrides: [
         {
+            files: '**/*.config.js',
+            env: {
+                node: true,
+            },
+        },
+        {
             files: '**/*.{tsx,jsx}',
             extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:react/jsx-runtime'],
             parserOptions: {
