@@ -1,6 +1,6 @@
 {
     "name": "@sirse-dev/eslint-config",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "ESLint configuration with reasonable defaults.",
     "main": "index.js",
     "publishConfig": {
