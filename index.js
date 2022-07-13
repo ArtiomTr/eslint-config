@@ -187,6 +187,16 @@ module.exports = {
                                   leadingUnderscore: 'allow',
                                   trailingUnderscore: 'forbid',
                               },
+                              {
+                                  selector: ['variable', 'property', 'parameter'],
+                                  format: ['camelCase', 'PascalCase'],
+                                  filter: {
+                                      regex: '^\\w+Context$',
+                                      match: true,
+                                  },
+                                  leadingUnderscore: 'allow',
+                                  trailingUnderscore: 'forbid',
+                              },
                           ]
                         : [
                               {
