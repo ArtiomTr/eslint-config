@@ -1,5 +1,25 @@
 const { accessSync } = require('fs');
+const prettier = require('prettier');
 const { resolve } = require('path');
+
+// Default Prettier code style, to ensure same code style across all projects.
+const DEFAULT_PRETTIER_CONFIG = {
+    // Disables annoying issue, when people with Windows and Linux environments are working
+    //   on same project. Linux has only LF at the end of line, while Windows has CRLF. This
+    //   results in dirty git history. In my opinion, best strategy is to turn off "core.autocrlf"
+    //   on Windows and commit "as is".
+    endOfLine: 'auto',
+    tabWidth: 4,
+    printWidth: 120,
+    trailingComma: 'all',
+    singleQuote: true,
+    useTabs: false,
+    arrowParens: 'always',
+    bracketSameLine: false,
+    bracketSpacing: true,
+    embeddedLanguageFormatting: 'auto',
+    jsxSingleQuote: false,
+};
 
 let isTsconfigAvailable;
 const tsConfigPath = resolve(process.cwd(), 'tsconfig.json');
@@ -9,6 +29,15 @@ try {
     isTsconfigAvailable = true;
 } catch {
     isTsconfigAvailable = false;
+    console.warn('Typescript configuration file not found, some lint rules will be disabled');
+}
+
+let prettierConfig = DEFAULT_PRETTIER_CONFIG;
+
+try {
+    prettierConfig = prettier.resolveConfig.sync(process.cwd());
+} catch {
+    console.warn('Cannot find prettier configuration file - using defaults');
 }
 
 /** @type {import('eslint').Linter.Config} */
@@ -49,27 +78,7 @@ module.exports = {
     ],
     // Rules that are default for all source files.
     rules: {
-        'prettier/prettier': [
-            'error',
-            // Default Prettier code style, to ensure same code style across all projects.
-            {
-                // Disables annoying issue, when people with Windows and Linux environments are working
-                //   on same project. Linux has only LF at the end of line, while Windows has CRLF. This
-                //   results in dirty git history. In my opinion, best strategy is to turn off "core.autocrlf"
-                //   on Windows and commit "as is".
-                endOfLine: 'auto',
-                tabWidth: 4,
-                printWidth: 120,
-                trailingComma: 'all',
-                singleQuote: true,
-                useTabs: false,
-                arrowParens: 'always',
-                bracketSameLine: false,
-                bracketSpacing: true,
-                embeddedLanguageFormatting: 'auto',
-                jsxSingleQuote: false,
-            },
-        ],
+        'prettier/prettier': ['error', prettierConfig],
         '@typescript-eslint/naming-convention': [
             'error',
             {
