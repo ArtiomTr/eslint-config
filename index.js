@@ -1,6 +1,4 @@
-const { accessSync } = require('fs');
 const prettier = require('prettier');
-const { resolve } = require('path');
 
 // Default Prettier code style, to ensure same code style across all projects.
 const DEFAULT_PRETTIER_CONFIG = {
@@ -21,17 +19,6 @@ const DEFAULT_PRETTIER_CONFIG = {
     jsxSingleQuote: false,
 };
 
-let isTsconfigAvailable;
-const tsConfigPath = resolve(process.cwd(), 'tsconfig.json');
-
-try {
-    accessSync(tsConfigPath);
-    isTsconfigAvailable = true;
-} catch {
-    isTsconfigAvailable = false;
-    console.warn('Typescript configuration file not found, some lint rules will be disabled');
-}
-
 let prettierConfig = DEFAULT_PRETTIER_CONFIG;
 
 try {
@@ -47,10 +34,6 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        // Some rules from @typescript-eslint plugin require project (tsconfig.json file).
-        // However, it will throw an error if no such file exist. So this code checks, if
-        //   tsconfig exists, and if not, disables some rules.
-        project: isTsconfigAvailable ? tsConfigPath : undefined,
     },
     plugins: [
         // Plugin to glue Prettier and ESLint together.
@@ -177,49 +160,17 @@ module.exports = {
             rules: {
                 '@typescript-eslint/naming-convention': [
                     'error',
-                    ...(isTsconfigAvailable
-                        ? [
-                              {
-                                  selector: ['variable'],
-                                  types: ['function'],
-                                  format: ['camelCase', 'PascalCase'],
-                                  leadingUnderscore: 'allow',
-                                  trailingUnderscore: 'forbid',
-                              },
-                              {
-                                  selector: ['variable', 'property', 'parameter'],
-                                  format: ['camelCase', 'PascalCase'],
-                                  filter: {
-                                      regex: '^\\w+Component$',
-                                      match: true,
-                                  },
-                                  leadingUnderscore: 'allow',
-                                  trailingUnderscore: 'forbid',
-                              },
-                              {
-                                  selector: ['variable', 'property', 'parameter'],
-                                  format: ['camelCase', 'PascalCase'],
-                                  filter: {
-                                      regex: '^\\w+Context$',
-                                      match: true,
-                                  },
-                                  leadingUnderscore: 'allow',
-                                  trailingUnderscore: 'forbid',
-                              },
-                          ]
-                        : [
-                              {
-                                  selector: ['variable', 'property', 'parameter'],
-                                  format: ['camelCase', 'PascalCase'],
-                                  leadingUnderscore: 'allow',
-                                  trailingUnderscore: 'forbid',
-                              },
-                          ]),
+                    {
+                        selector: ['variable', 'property', 'parameter'],
+                        format: ['camelCase', 'PascalCase'],
+                        leadingUnderscore: 'allow',
+                        trailingUnderscore: 'allow',
+                    },
                     {
                         selector: ['variableLike', 'memberLike', 'property', 'method'],
                         format: ['camelCase'],
                         leadingUnderscore: 'allow',
-                        trailingUnderscore: 'forbid',
+                        trailingUnderscore: 'allow',
                     },
                     {
                         selector: 'variable',
@@ -240,7 +191,7 @@ module.exports = {
                         leadingUnderscore: 'forbid',
                         trailingUnderscore: 'forbid',
                     },
-                ].filter(Boolean),
+                ],
                 'no-console': 'error',
                 'react/prop-types': 'off',
                 'react/display-name': 'off',
