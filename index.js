@@ -130,7 +130,7 @@ module.exports = {
     },
     overrides: [
         {
-            files: '**/*.config.js',
+            files: '**/*.config.{js,cjs,mjs}',
             env: {
                 node: true,
             },
