@@ -62,39 +62,6 @@ module.exports = {
     // Rules that are default for all source files.
     rules: {
         'prettier/prettier': ['error', prettierConfig],
-        '@typescript-eslint/naming-convention': [
-            'error',
-            {
-                // All variables by default should be camelCased.
-                selector: ['variableLike', 'memberLike', 'property', 'method'],
-                format: ['camelCase'],
-                // Leading underscore is allowed for ignored parameters.
-                leadingUnderscore: 'allow',
-                trailingUnderscore: 'forbid',
-            },
-            {
-                // Global constants should be UPPER_CASED.
-                selector: 'variable',
-                modifiers: ['const'],
-                format: ['camelCase', 'UPPER_CASE'],
-                leadingUnderscore: 'forbid',
-                trailingUnderscore: 'forbid',
-            },
-            {
-                // All types, classes, enums should be in PascalCase.
-                selector: 'typeLike',
-                format: ['PascalCase'],
-                leadingUnderscore: 'forbid',
-                trailingUnderscore: 'forbid',
-            },
-            {
-                // Enum members in UPPER_CASE.
-                selector: 'enumMember',
-                format: ['UPPER_CASE'],
-                leadingUnderscore: 'forbid',
-                trailingUnderscore: 'forbid',
-            },
-        ],
         '@typescript-eslint/no-namespace': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
@@ -158,40 +125,6 @@ module.exports = {
                 browser: true,
             },
             rules: {
-                '@typescript-eslint/naming-convention': [
-                    'error',
-                    {
-                        selector: ['variable', 'property', 'parameter'],
-                        format: ['camelCase', 'PascalCase'],
-                        leadingUnderscore: 'allow',
-                        trailingUnderscore: 'allow',
-                    },
-                    {
-                        selector: ['variableLike', 'memberLike', 'property', 'method'],
-                        format: ['camelCase'],
-                        leadingUnderscore: 'allow',
-                        trailingUnderscore: 'allow',
-                    },
-                    {
-                        selector: 'variable',
-                        modifiers: ['const'],
-                        format: ['camelCase', 'UPPER_CASE'],
-                        leadingUnderscore: 'forbid',
-                        trailingUnderscore: 'forbid',
-                    },
-                    {
-                        selector: 'typeLike',
-                        format: ['PascalCase'],
-                        leadingUnderscore: 'forbid',
-                        trailingUnderscore: 'forbid',
-                    },
-                    {
-                        selector: 'enumMember',
-                        format: ['UPPER_CASE'],
-                        leadingUnderscore: 'forbid',
-                        trailingUnderscore: 'forbid',
-                    },
-                ],
                 'no-console': 'error',
                 'react/prop-types': 'off',
                 'react/display-name': 'off',
