@@ -18,9 +18,9 @@ const escalate = (config, type) => {
             currentConfig.rules = { ...currentConfig.rules };
             for(const [rule, ruleOptions] of Object.entries(currentConfig.rules)) {
                 if(typeof ruleOptions === 'string' && ruleOptions === 'escalate') {
-                    copiedConfig.rules[rule] = type;
+                    currentConfig.rules[rule] = type;
                 } else if(Array.isArray(ruleOptions) && ruleOptions[0] === 'escalate') {
-                    copiedConfig.rules[rule][0] = type;
+                    currentConfig.rules[rule][0] = type;
                 }
             }
         }
