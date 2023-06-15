@@ -59,7 +59,7 @@ module.exports = {
     ],
     // Rules that are default for all source files.
     rules: {
-        'prettier/prettier': ['error', prettierConfig],
+        'prettier/prettier': ['escalate', prettierConfig],
         '@typescript-eslint/no-namespace': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
@@ -69,10 +69,10 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': 'error',
         'array-callback-return': ['error', { checkForEach: true, allowImplicit: false }],
         'capitalized-comments': 'off',
-        curly: ['error', 'all'],
+        curly: ['escalate', 'all'],
         // Ensure consistent import ordering.
         'import/order': [
-            'error',
+            'escalate',
             {
                 groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], 'type', 'object'],
                 alphabetize: {
@@ -82,11 +82,11 @@ module.exports = {
             },
         ],
         // Lodash optimization.
-        'lodash/import-scope': ['error', 'method'],
+        'lodash/import-scope': ['escalate', 'method'],
         // Workspace configurations.
-        'workspaces/no-relative-imports': 'error',
-        'workspaces/no-absolute-imports': 'error',
-        'workspaces/require-dependency': 'error',
+        'workspaces/no-relative-imports': 'escalate',
+        'workspaces/no-absolute-imports': 'escalate',
+        'workspaces/require-dependency': 'escalate',
         // Disallow regular expressions with exponential time complexity.
         'unicorn/no-unsafe-regex': 'error',
         'unicorn/filename-case': 'off',
@@ -123,13 +123,13 @@ module.exports = {
                 browser: true,
             },
             rules: {
-                'no-console': 'error',
+                'no-console': 'escalate',
                 'react/prop-types': 'off',
                 'react/display-name': 'off',
-                'react-hooks/exhaustive-deps': 'error',
-                '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: 'React' }],
+                'react-hooks/exhaustive-deps': 'escalate',
+                '@typescript-eslint/no-unused-vars': ['escalate', { varsIgnorePattern: 'React' }],
                 'unicorn/prevent-abbreviations': [
-                    'error',
+                    'escalate',
                     {
                         replacements: {
                             props: {
