@@ -70,7 +70,7 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/no-unused-vars': 'error',
         'array-callback-return': ['error', { checkForEach: true, allowImplicit: false }],
-        'capitalized-comments': 'warn',
+        'capitalized-comments': 'off',
         curly: ['error', 'all'],
         // Ensure consistent import ordering.
         'import/order': [
