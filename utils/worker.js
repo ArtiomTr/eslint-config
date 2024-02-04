@@ -28,5 +28,5 @@ runAsWorker(async () => {
         console.warn('Cannot find prettier configuration file - fallback to defaults');
     }
 
-    return prettierConfig;
+    return prettierConfig ?? DEFAULT_PRETTIER_CONFIG;
 });
