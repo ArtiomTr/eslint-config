@@ -71,6 +71,8 @@ module.exports = {
         'unicorn/filename-case': 'off',
         'unicorn/prefer-ternary': 'off',
         'unicorn/no-array-callback-reference': 'off',
+        // Disable rule, because it throws errors
+        'unicorn/expiring-todo-comments': 'off'
     },
     overrides: [
         {
