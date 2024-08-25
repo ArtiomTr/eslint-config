@@ -54,6 +54,7 @@ export default [
                 prettierConfig,
             ],
 
+            'unicorn/no-useless-undefined': 'off',
             '@typescript-eslint/no-namespace': 'off',
             '@typescript-eslint/explicit-module-boundary-types': 'off',
             '@typescript-eslint/no-empty-interface': 'off',
